@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useContext } from 'react';
+import { DarkModeContext } from '../../context/DarkModeContext';
 import ClientsBubbleChart from '../../charts/ClientsBubbleChart';
 import SIPBusinessChart from '../../charts/SIPBusinessChart';
 import MonthlyMISChart from '../../charts/MonthlyMISChart';
@@ -16,7 +17,7 @@ const navItems = [
 ];
 
 export default function Dashboard() {
-  const [darkMode, setDarkMode] = useState(false);
+  const { darkMode, setDarkMode } = useContext(DarkModeContext);
   const [range, setRange] = useState(3);
   const [loading, setLoading] = useState(true);
   const [stats, setStats] = useState({});
@@ -89,13 +90,7 @@ export default function Dashboard() {
     ],
   };
 
-  useEffect(() => {
-    if (darkMode) {
-      document.documentElement.classList.add('dark');
-    } else {
-      document.documentElement.classList.remove('dark');
-    }
-  }, [darkMode]);
+  // Removed local darkMode effect, now handled globally
 
   // Dummy stat data
   const statCards = [
@@ -107,7 +102,7 @@ export default function Dashboard() {
   ];
 
   return (
-    <div className="min-h-screen bg-white dark:bg-gray-900">
+    <div className={darkMode ? 'min-h-screen bg-gray-900 dark' : 'min-h-screen bg-white'}>
       {/* Top Nav */}
       <header className="w-full bg-red-600 text-white flex items-center px-6 py-2 justify-between">
         <Logo />

@@ -2,26 +2,37 @@ import React, { useContext } from 'react';
 import { DarkModeContext } from '../context/DarkModeContext';
 
 const menuItems = [
-  'HOME', 'CRM', 'UTILITIES', 'INSURANCE *', 'ASSETS *', 'MUTUAL', 'RESEARCH', 'TRANSACT ONLINE', 'GOAL GPS', 'FINANCIAL PLANNING', 'WEALTH REPORT', 'OTHER *'
+  'HOME', 'CRM', 'UTILITIES', 'INSURANCE *', 'ASSETS *', 'MUTUAL',
+  'RESEARCH', 'TRANSACT ONLINE', 'GOAL GPS', 'FINANCIAL PLANNING',
+  'WEALTH REPORT', 'OTHER *'
 ];
 
-function TopHeader() {
+export function TopHeader() {
   return (
-    <div className="w-full flex items-center justify-between px-8 py-2 bg-white border-b border-gray-200">
-      {/* Logo */}
-      <div className="flex items-center gap-2 min-w-[160px]">
-        <img src="/logo.svg" alt="Wealth Elite" className="h-8 w-auto" />
-        <span className="font-bold text-lg text-green-700">Wealth Elite</span>
-        <span className="text-xs text-gray-500 ml-1">INVESTMENT MADE SIMPLE</span>
+    <div className="w-full flex items-center justify-between px-6 py-3 bg-white border-b border-gray-200 shadow-sm">
+      {/* Logo Section */}
+      <div className="flex items-center gap-2 min-w-[180px]">
+        <img src="image.png" alt="Wealth Elite" className="h-10 w-auto" />
+        <div className="flex flex-col ml-2">
+          <span className="font-bold text-lg text-green-700 leading-tight">Wealth Elite</span>
+          <span className="text-xs text-gray-500">INVESTMENT MADE SIMPLE</span>
+        </div>
       </div>
+
       {/* Search Bar */}
       <div className="flex-1 flex justify-center">
-        <input type="text" placeholder="ex.Live portfolio" className="w-80 px-3 py-1 border rounded" />
-        <button className="ml-2 px-2 py-1 bg-gray-200 rounded">🔍</button>
+        <div className="flex items-center w-full max-w-lg bg-gray-50 border border-gray-300 rounded-lg px-3 py-1 shadow">
+          <input
+            type="text"
+            placeholder="ex.Live portfolio"
+            className="flex-1 px-2 py-2 bg-transparent outline-none text-gray-800 text-sm"
+          />
+          <button className="px-3 py-2 bg-gray-200 rounded hover:bg-gray-300 text-gray-700">🔍</button>
+        </div>
       </div>
-      {/* Icons and Logout */}
-      <div className="flex items-center gap-3">
-        {/* Replace with SVGs for production */}
+
+      {/* Icons + Logout */}
+      <div className="flex items-center gap-3 text-lg">
         <span title="Cart">🛒</span>
         <span title="Idea">💡</span>
         <span title="Notification">🔔</span>
@@ -39,22 +50,30 @@ function TopHeader() {
   );
 }
 
-export default function Navbar() {
+export function Header() {
   const { darkMode, setDarkMode } = useContext(DarkModeContext);
 
   return (
-    <div>
-      <TopHeader />
-      <nav className="w-full flex items-center px-0 py-0 bg-red-600">
-        <div className="flex gap-4 px-8 py-2 w-full overflow-x-auto">
-          {menuItems.map(item => (
-            <span key={item} className="text-sm font-semibold text-white cursor-pointer hover:underline whitespace-nowrap">{item}</span>
-          ))}
-          <button onClick={() => setDarkMode(!darkMode)} className="ml-auto px-2 py-1 rounded bg-white text-red-600 text-xs">
-            {darkMode ? 'Light' : 'Dark'} Mode
-          </button>
-        </div>
-      </nav>
-    </div>
+    <nav className="w-full flex items-center bg-red-600">
+      <div className="flex gap-6 px-6 py-3 w-full overflow-x-auto">
+        {menuItems.map(item => (
+          <span
+            key={item}
+            className="text-xs sm:text-sm font-semibold text-white cursor-pointer hover:underline whitespace-nowrap"
+          >
+            {item}
+          </span>
+        ))}
+        {/* Dark/Light Mode Toggle */}
+        <button
+          onClick={() => setDarkMode(!darkMode)}
+          className="ml-auto px-3 py-1 rounded bg-white text-red-600 text-xs shadow"
+        >
+          {darkMode ? 'Light' : 'Dark'} Mode
+        </button>
+      </div>
+    </nav>
   );
 }
+
+
