@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useState, useContext } from 'react';
 import { DarkModeContext } from '../../context/DarkModeContext';
 import ClientsBubbleChart from '../../charts/ClientsBubbleChart';
@@ -17,6 +19,7 @@ const navItems = [
 ];
 
 export default function Dashboard() {
+  
   const { darkMode, setDarkMode } = useContext(DarkModeContext);
   const [range, setRange] = useState(3);
   const [loading, setLoading] = useState(true);
