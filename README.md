@@ -1,2 +1,2 @@
-https://github.com/rahulitme/financial_deshboard
+deployed
 https://financial-deshboard.vercel.app/
